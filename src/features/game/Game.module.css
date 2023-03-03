@@ -62,6 +62,10 @@
     background-image: url('../../sprites/tile_bomb_defused.png');
 }
 
+.tile.revealed.mine.caused-game-end {
+    background-image: url('../../sprites/tile_bomb_red.png');
+}
+
 .digits-display {
     height: 23px;
 }

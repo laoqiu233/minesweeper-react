@@ -162,5 +162,12 @@ export const selectRevealedCount = createSelector(
     revealedCount
 )
 
+export const selectBombRevealed = createSelector(
+    [
+        (state: RootState) => state.game.grid
+    ],
+    (grid) => grid.flat().filter(x => x.isMine && x.state === 'REVEALED').length > 0
+);
+
 export const { generateGrid, revealTile, incrementTileState } = slice.actions;
 export default slice.reducer;

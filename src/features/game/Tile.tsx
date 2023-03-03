@@ -1,4 +1,4 @@
-import { MouseEvent, useMemo } from "react";
+import { MouseEvent, useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { Coordinates, incrementTileState, makeSelectTileMineCount, revealTile, Tile as TileType, TileState } from "./gameSlice"
 import styles from './Game.module.css';
@@ -7,7 +7,6 @@ type TileProps = {
     coordinates: Coordinates;
     tile: TileType;
     gameEnded: boolean;
-    onBombRevealed: () => void;
 };
 
 const mineCountToClassName = [
@@ -22,14 +21,19 @@ const mineCountToClassName = [
     styles['eight']
 ];
 
-function Tile({coordinates, tile, gameEnded, onBombRevealed}: TileProps) {
+function Tile({coordinates, tile, gameEnded}: TileProps) {
     const dispatch = useAppDispatch();
     const selectTileMineCount = useMemo(() => makeSelectTileMineCount(), []);
     const tileMineCount = useAppSelector(state => selectTileMineCount(state, coordinates));
+    const [causedGameEnd, setCausedGameEnd] = useState(false);
+
+    useEffect(() => {
+        if (!gameEnded) setCausedGameEnd(false);
+    }, [gameEnded]);
 
     const handleClick = (e: MouseEvent) => {
         dispatch(revealTile(coordinates));
-        if (tile.isMine) onBombRevealed();
+        if (tile.isMine) setCausedGameEnd(true);
     };
 
     const handleContextMenu = (e: MouseEvent) => {
@@ -43,6 +47,7 @@ function Tile({coordinates, tile, gameEnded, onBombRevealed}: TileProps) {
 
     if (tile.state === 'REVEALED') {
         className += ` ${styles['revealed']}`;
+        if (causedGameEnd) className += ` ${styles['caused-game-end']}`;
         return <div className={className}></div>
     } else {
         if (tile.state === 'FLAGGED') className += ` ${styles['flagged']}`;
