@@ -31,7 +31,7 @@ function Game({settings} : GameProps) {
         <div>
             <div>
                 <Smiley 
-                    state={gameEnded ? 'LOSE' : 'NORMAL'}
+                    state={gameEnded ? (win ? 'WIN' : 'LOSE') : 'NORMAL'}
                     onClick={() => dispatch(generateGrid(settings))}
                 />
                 <DigitsDisplay digits={3} value={settings.minesCount - flagCount}/>
