@@ -6,6 +6,8 @@ import styles from './Game.module.css';
 type TileProps = {
     coordinates: Coordinates;
     tile: TileType;
+    gameEnded: boolean;
+    onBombRevealed: () => void;
 };
 
 const mineCountToClassName = [
@@ -20,13 +22,14 @@ const mineCountToClassName = [
     styles['eight']
 ];
 
-function Tile({coordinates, tile}: TileProps) {
+function Tile({coordinates, tile, gameEnded, onBombRevealed}: TileProps) {
     const dispatch = useAppDispatch();
     const selectTileMineCount = useMemo(() => makeSelectTileMineCount(), []);
     const tileMineCount = useAppSelector(state => selectTileMineCount(state, coordinates));
 
     const handleClick = (e: MouseEvent) => {
         dispatch(revealTile(coordinates));
+        if (tile.isMine) onBombRevealed();
     };
 
     const handleContextMenu = (e: MouseEvent) => {
@@ -44,9 +47,10 @@ function Tile({coordinates, tile}: TileProps) {
     } else {
         if (tile.state === 'FLAGGED') className += ` ${styles['flagged']}`;
         if (tile.state === 'QUESTION') className += ` ${styles['question']}`;
+        if (gameEnded && tile.isMine) className += ` ${styles['revealed']}`;
         return <div className={className} 
-                    onClick={handleClick} 
-                    onContextMenu={handleContextMenu}
+                    onClick={(e) => gameEnded || handleClick(e)} 
+                    onContextMenu={(e) => gameEnded || handleContextMenu(e)}
                 />
     }
 }

@@ -58,6 +58,10 @@
     background-image: url('../../sprites/tile_bomb.png');
 }
 
+.tile.revealed.mine.flagged {
+    background-image: url('../../sprites/tile_bomb_defused.png');
+}
+
 .digits-display {
     height: 23px;
 }
@@ -114,7 +118,7 @@
 }
 
 .smiley:active {
-    background-image: url('../../sprites/smiley_pressed.png');
+    background-image: url('../../sprites/smiley_pressed.png') !important;
 }
 
 .smiley.scared {
