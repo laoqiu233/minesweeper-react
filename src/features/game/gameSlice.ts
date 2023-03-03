@@ -54,6 +54,22 @@ export const slice = createSlice({
             }
         },
         revealTile: (state, {payload: startingCoords}: PayloadAction<Coordinates>) => {
+            // First reveal loss prevention
+            const revealed = revealedCount(state.grid);
+            if (revealed === 0 && state.grid[startingCoords.y][startingCoords.x].isMine) {
+                state.grid[startingCoords.y][startingCoords.x].isMine = false;
+                for (let y = 0; y < state.grid.length; y++) {
+                    let relocated = false;
+                    for (let x = 0; x < state.grid[y].length; x++) {
+                        if (state.grid[y][x].isMine || (y === startingCoords.y && x === startingCoords.x)) continue;
+                        state.grid[y][x].isMine = true;
+                        relocated = true;
+                        break;
+                    }
+                    if (relocated) break;
+                }
+            }
+
             const stack = [startingCoords] as Coordinates[];
 
             while (stack.length) {
@@ -137,11 +153,13 @@ export const selectUnflaggedMineCount = createSelector(
     (grid) => grid.flat().filter(x => x.state !== 'FLAGGED' && x.isMine).length
 )
 
-export const selectUnrevealedCount = createSelector(
+const revealedCount = (grid: Tile[][]) => grid.flat().filter(x => x.state === 'REVEALED').length
+
+export const selectRevealedCount = createSelector(
     [
         (state: RootState) => state.game.grid
     ],
-    (grid) => grid.flat().filter(x => x.state !== 'REVEALED') 
+    revealedCount
 )
 
 export const { generateGrid, revealTile, incrementTileState } = slice.actions;

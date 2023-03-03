@@ -19,7 +19,7 @@ const valueToClassName = [
 ];
 
 function DigitsDisplay({digits, value}: DigitsDisplayProps) {
-    value = Math.min(Math.pow(10, digits) - 1, value);
+    value = Math.min(Math.pow(10, digits) - 1, Math.max(0, value));
     let els = [];
 
     for (let i = 0; i < digits; i++) {
