@@ -1,4 +1,130 @@
+.row {
+    height: 16px;
+}
+
 .tile {
-    width: 40px;
-    height: 40px;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-image: url('../../sprites/tile_normal.png');
+    image-rendering: pixelated;
+}
+
+.tile.flagged {
+    background-image: url('../../sprites/tile_flagged.png');
+}
+
+.tile.question {
+    background-image: url('../../sprites/tile_question.png');
+}
+
+.tile.revealed.empty {
+    background-image: url('../../sprites/tile_empty.png');
+}
+
+.tile.revealed.one {
+    background-image: url('../../sprites/tile_one.png');
+}
+
+.tile.revealed.two {
+    background-image: url('../../sprites/tile_two.png');
+}
+
+.tile.revealed.three {
+    background-image: url('../../sprites/tile_three.png');
+}
+
+.tile.revealed.four {
+    background-image: url('../../sprites/tile_four.png');
+}
+
+.tile.revealed.five {
+    background-image: url('../../sprites/tile_five.png');
+}
+
+.tile.revealed.six {
+    background-image: url('../../sprites/tile_six.png');
+}
+
+.tile.revealed.seven {
+    background-image: url('../../sprites/tile_seven.png');
+}
+
+.tile.revealed.eight {
+    background-image: url('../../sprites/tile_eight.png');
+}
+
+.tile.revealed.mine {
+    background-image: url('../../sprites/tile_bomb.png');
+}
+
+.digits-display {
+    height: 23px;
+}
+
+.digits, .digits.zero {
+    width: 13px;
+    height: 23px;
+    display: inline-block;
+    background-image: url('../../sprites/display_zero.png');
+    image-rendering: pixelated;
+}
+
+.digits.one {
+    background-image: url('../../sprites/display_one.png');
+}
+
+.digits.two {
+    background-image: url('../../sprites/display_two.png');
+}
+
+.digits.three {
+    background-image: url('../../sprites/display_three.png');
+}
+
+.digits.four {
+    background-image: url('../../sprites/display_four.png');
+}
+
+.digits.five {
+    background-image: url('../../sprites/display_five.png');
+}
+
+.digits.six {
+    background-image: url('../../sprites/display_six.png');
+}
+
+.digits.seven {
+    background-image: url('../../sprites/display_seven.png');
+}
+
+.digits.eight {
+    background-image: url('../../sprites/display_eight.png');
+}
+
+.digits.nine {
+    background-image: url('../../sprites/display_nine.png');
+}
+
+.smiley {
+    width: 26px;
+    height: 26px;
+    image-rendering: pixelated;
+    background-image: url('../../sprites/smiley_normal.png');
+}
+
+.smiley:active {
+    background-image: url('../../sprites/smiley_pressed.png');
+}
+
+.smiley.scared {
+    background-image: url('../../sprites/smiley_scared.png');
+}
+
+.smiley.win {
+    background-image: url('../../sprites/smiley_win.png');
+}
+
+.smiley.lose {
+    background-image: url('../../sprites/smiley_lose.png');
 }

@@ -8,15 +8,17 @@ type TileProps = {
     tile: TileType;
 };
 
-type TileStateToText = {
-    [index in Exclude<TileState, 'REVEALED'>]: string
-}
-
-const text: TileStateToText = {
-    'HIDDEN': '⬛',
-    'FLAGGED': '🚩',
-    'QUESTION': '❔',
-};
+const mineCountToClassName = [
+    styles['empty'],
+    styles['one'],
+    styles['two'],
+    styles['three'],
+    styles['four'],
+    styles['five'],
+    styles['six'],
+    styles['seven'],
+    styles['eight']
+];
 
 function Tile({coordinates, tile}: TileProps) {
     const dispatch = useAppDispatch();
@@ -32,10 +34,20 @@ function Tile({coordinates, tile}: TileProps) {
         dispatch(incrementTileState(coordinates));
     }
 
+    let className = styles['tile'];
+    if (tile.isMine) className += ` ${styles['mine']}`;
+    else className += ` ${mineCountToClassName[tileMineCount]}`;
+
     if (tile.state === 'REVEALED') {
-        return <button className={styles['tile']}>{tile.isMine ? '💣' : tileMineCount}</button>
+        className += ` ${styles['revealed']}`;
+        return <div className={className}></div>
     } else {
-        return <button className={styles['tile']} onClick={handleClick} onContextMenu={handleContextMenu}>{text[tile.state]}</button>
+        if (tile.state === 'FLAGGED') className += ` ${styles['flagged']}`;
+        if (tile.state === 'QUESTION') className += ` ${styles['question']}`;
+        return <div className={className} 
+                    onClick={handleClick} 
+                    onContextMenu={handleContextMenu}
+                />
     }
 }
 

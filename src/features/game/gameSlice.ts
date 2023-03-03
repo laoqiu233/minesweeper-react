@@ -123,5 +123,26 @@ export const makeSelectTileMineCount = () => {
     );
 };
 
+export const selectFlagCount = createSelector(
+    [
+        (state: RootState) => state.game.grid
+    ],
+    (grid) => grid.flat().filter(x => x.state === 'FLAGGED').length
+)
+
+export const selectUnflaggedMineCount = createSelector(
+    [
+        (state: RootState) => state.game.grid
+    ],
+    (grid) => grid.flat().filter(x => x.state !== 'FLAGGED' && x.isMine).length
+)
+
+export const selectUnrevealedCount = createSelector(
+    [
+        (state: RootState) => state.game.grid
+    ],
+    (grid) => grid.flat().filter(x => x.state !== 'REVEALED') 
+)
+
 export const { generateGrid, revealTile, incrementTileState } = slice.actions;
 export default slice.reducer;
