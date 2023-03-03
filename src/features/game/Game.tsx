@@ -28,23 +28,26 @@ function Game({settings} : GameProps) {
     const gameEnded = win || bombRevealed;
 
     return (
-        <div>
-            <div>
+    <div className={`${styles['game']} ${styles['outer-border']}`}>
+            <div className={`${styles['game-status']} ${styles['inner-border']}`}>
+                <DigitsDisplay digits={3} value={settings.minesCount - flagCount}/>
                 <Smiley 
                     state={gameEnded ? (win ? 'WIN' : 'LOSE') : 'NORMAL'}
                     onClick={() => dispatch(generateGrid(settings))}
                 />
-                <DigitsDisplay digits={3} value={settings.minesCount - flagCount}/>
+                <DigitsDisplay digits={3} value={0}/>
             </div>
-            {
-                grid.map((v, y) => (
-                    <div key={`row-${y}`} className={styles['row']}>
-                        {
-                            v.map((tile, x) => <Tile tile={tile} coordinates={{x, y}} key={`${y}-${x}`} gameEnded={gameEnded}/>)
-                        }
-                    </div>
-                ))
-            }
+            <div className={styles['inner-border']}>
+                {
+                    grid.map((v, y) => (
+                        <div key={`row-${y}`} className={styles['row']}>
+                            {
+                                v.map((tile, x) => <Tile tile={tile} coordinates={{x, y}} key={`${y}-${x}`} gameEnded={gameEnded}/>)
+                            }
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     );
 }
