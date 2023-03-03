@@ -7,6 +7,8 @@ type TileProps = {
     coordinates: Coordinates;
     tile: TileType;
     gameEnded: boolean;
+    onMouseDown: (e: MouseEvent) => void,
+    onMouseUp: (e: MouseEvent) => void
 };
 
 const mineCountToClassName = [
@@ -21,7 +23,7 @@ const mineCountToClassName = [
     styles['eight']
 ];
 
-function Tile({coordinates, tile, gameEnded}: TileProps) {
+function Tile({coordinates, tile, gameEnded, onMouseDown, onMouseUp}: TileProps) {
     const dispatch = useAppDispatch();
     const selectTileMineCount = useMemo(() => makeSelectTileMineCount(), []);
     const tileMineCount = useAppSelector(state => selectTileMineCount(state, coordinates));
@@ -54,6 +56,8 @@ function Tile({coordinates, tile, gameEnded}: TileProps) {
         if (tile.state === 'QUESTION') className += ` ${styles['question']}`;
         if (gameEnded && tile.isMine) className += ` ${styles['revealed']}`;
         return <div className={className} 
+                    onMouseDown={onMouseDown}
+                    onMouseUp={onMouseUp}
                     onClick={(e) => gameEnded || handleClick(e)} 
                     onContextMenu={(e) => gameEnded || handleContextMenu(e)}
                 />

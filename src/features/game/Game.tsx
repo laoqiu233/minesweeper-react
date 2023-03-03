@@ -17,6 +17,7 @@ function Game({settings} : GameProps) {
     const unflaggedMineCount = useAppSelector(selectUnflaggedMineCount);
     const flagCount = useAppSelector(selectFlagCount);
     const bombRevealed = useAppSelector(selectBombRevealed);
+    const [mouseDownOnTile, setMouseDownOnTile] = useState(false);
 
     useEffect(() => {
         dispatch(generateGrid(settings))
@@ -32,7 +33,7 @@ function Game({settings} : GameProps) {
             <div className={`${styles['game-status']} ${styles['inner-border']}`}>
                 <DigitsDisplay digits={3} value={settings.minesCount - flagCount}/>
                 <Smiley 
-                    state={gameEnded ? (win ? 'WIN' : 'LOSE') : 'NORMAL'}
+                    state={gameEnded ? (win ? 'WIN' : 'LOSE') : (mouseDownOnTile ? 'SCARED' : 'NORMAL')}
                     onClick={() => dispatch(generateGrid(settings))}
                 />
                 <DigitsDisplay digits={3} value={0}/>
@@ -42,7 +43,14 @@ function Game({settings} : GameProps) {
                     grid.map((v, y) => (
                         <div key={`row-${y}`} className={styles['row']}>
                             {
-                                v.map((tile, x) => <Tile tile={tile} coordinates={{x, y}} key={`${y}-${x}`} gameEnded={gameEnded}/>)
+                                v.map((tile, x) => <Tile 
+                                    tile={tile}
+                                    coordinates={{x, y}}
+                                    key={`${y}-${x}`}
+                                    gameEnded={gameEnded}
+                                    onMouseDown={(e) => setMouseDownOnTile(true)}
+                                    onMouseUp={(e) => setMouseDownOnTile(false)}
+                                />)
                             }
                         </div>
                     ))
