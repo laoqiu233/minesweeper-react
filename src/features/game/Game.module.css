@@ -3,12 +3,12 @@
     width: fit-content;
     display: table;
     border: 8px solid #C0C0C0;
-    padding: 3px;
+    padding: 5px;
 }
 
 .game-status {
     padding: 12px 8px;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
