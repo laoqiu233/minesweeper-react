@@ -43,6 +43,7 @@
     height: 16px;
     display: inline-block;
     background-image: url('../../sprites/tile_normal.png');
+    background-size: cover;
     image-rendering: pixelated;
 }
 
@@ -171,4 +172,27 @@
 
 .smiley.lose {
     background-image: url('../../sprites/smiley_lose.png');
+}
+
+@media screen and (min-width: 768px) {
+    .tile {
+        width: 32px;
+        height: 32px;
+    }
+
+    .digits-display {
+        height: 46px;
+    }
+
+    .digits, .digits.zero {
+        height: 46px;
+        width: 26px;
+        background-size: cover;
+    }
+
+    .smiley {
+        width: 52px;
+        height: 52px;
+        background-size: cover;
+    }
 }

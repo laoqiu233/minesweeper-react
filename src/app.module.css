@@ -99,9 +99,3 @@
     background-image: url('./sprites/close_button.png');
     background-size: contain;
 }
-
-@media screen and (max-width: 768px) {
-    .app .game {
-        transform: scale(1);
-    }
-}
