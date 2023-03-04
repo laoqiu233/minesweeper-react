@@ -56,6 +56,8 @@
 }
 
 .window {
+    z-index: 1;
+
     padding: 3px;
     background-color: #BFBFBF;
 
@@ -74,8 +76,28 @@
 .window .title {
     padding: 4px 3px;
     background: linear-gradient(to left, #1085D2, #00007B);
-    color: white;
-    margin-bottom: 3px; 
+    margin-bottom: 3px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 14px;
+}
+
+.window>*:not(.title) {
+    padding: 3px 8px;
+}
+
+.window>*:not(.title) * {
+    color: black;
+}
+
+.window .close-window-button {
+    width: 18px;
+    height: 16px;
+    background-image: url('./sprites/close_button.png');
+    background-size: contain;
 }
 
 @media screen and (max-width: 768px) {
