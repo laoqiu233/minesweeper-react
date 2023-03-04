@@ -18,15 +18,40 @@ function Game({settings} : GameProps) {
     const flagCount = useAppSelector(selectFlagCount);
     const bombRevealed = useAppSelector(selectBombRevealed);
     const [mouseDownOnTile, setMouseDownOnTile] = useState(false);
+    const [timerStarted, setTimerStarted] = useState(-1);
+    const [timeToDisplay, setTimeToDisplay] = useState(0);
+
+    function restartGame() {
+        dispatch(generateGrid(settings));
+        setTimeToDisplay(0);
+    }
+
+    useEffect(restartGame, []);
 
     useEffect(() => {
-        dispatch(generateGrid(settings))
-    }, []);
+        if (timerStarted >= 0) {
+            const interval = setInterval(() => {
+                setTimeToDisplay(Math.floor((Date.now() - timerStarted) / 1000))
+            }, 1000);
+
+            return () => clearInterval(interval);
+        }
+    }, [timerStarted]);
+
+    useEffect(() => {
+        if (revealedCount > 0 && timerStarted < 0) setTimerStarted(Date.now());
+    }, [revealedCount]);
 
     const win = unflaggedMineCount === 0 &&
                 flagCount === settings.minesCount && 
                 revealedCount + settings.minesCount === settings.height * settings.width;
     const gameEnded = win || bombRevealed;
+
+    useEffect(() => {
+        if (gameEnded) {
+            setTimerStarted(-1);
+        }
+    }, [gameEnded]);
 
     return (
     <div className={`${styles['game']} ${styles['outer-border']}`}>
@@ -34,9 +59,9 @@ function Game({settings} : GameProps) {
                 <DigitsDisplay digits={3} value={settings.minesCount - flagCount}/>
                 <Smiley 
                     state={gameEnded ? (win ? 'WIN' : 'LOSE') : (mouseDownOnTile ? 'SCARED' : 'NORMAL')}
-                    onClick={() => dispatch(generateGrid(settings))}
+                    onClick={restartGame}
                 />
-                <DigitsDisplay digits={3} value={0}/>
+                <DigitsDisplay digits={3} value={timeToDisplay}/>
             </div>
             <div className={styles['inner-border']}>
                 {
