@@ -24,13 +24,24 @@
 .window {
     padding: 3px;
     background-color: #BFBFBF;
+
+    border-width: 3px;
+    border-style: solid;
+    border-top-color: white;
+    border-left-color: white;
+    border-bottom-color: #808080;
+    border-right-color: #808080; 
+
+    box-shadow:
+         -1px -1px 0 1px #BFBFBF, 
+         0px 0px 0 2px black;
 }
 
 .window .title {
     padding: 4px 3px;
     background: linear-gradient(to left, #1085D2, #00007B);
     color: white;
-    margin-bottom: 3px;
+    margin-bottom: 3px; 
 }
 
 @media screen and (max-width: 768px) {
