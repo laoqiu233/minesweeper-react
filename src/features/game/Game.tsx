@@ -48,8 +48,8 @@ function Game({settings} : GameProps) {
                                     coordinates={{x, y}}
                                     key={`${y}-${x}`}
                                     gameEnded={gameEnded}
-                                    onMouseDown={(e) => setMouseDownOnTile(true)}
-                                    onMouseUp={(e) => setMouseDownOnTile(false)}
+                                    onMouseDown={(e) => e.button === 0 && setMouseDownOnTile(true)}
+                                    onMouseUp={(e) => e.button === 0 && setMouseDownOnTile(false)}
                                 />)
                             }
                         </div>

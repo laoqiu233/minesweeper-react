@@ -1,0 +1,19 @@
+.app {
+    background-color: #008080;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.app .game {
+    transform: scale(2);
+}
+
+@media screen and (max-width: 768px) {
+    .app .game {
+        transform: scale(1);
+    }
+}
