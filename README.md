@@ -1,6 +1,6 @@
 # Minesweeper in React
 
-![Minesweeper in React](./imgs/title.png)
+![Minesweeper in React](./imgs/title_screenshot.png)
 
 This is a project wri   tten for the internship contest at VK. Around 10 hours total was 
 spent on making this project from scratch.
