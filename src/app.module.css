@@ -5,6 +5,7 @@
 
 * {
     font-family: 'MS Sans Serif';
+    color: white;
 }
 
 .app {
@@ -19,6 +20,39 @@
 
 .app .game {
     transform: scale(2);
+}
+
+.programs {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.program {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.program:hover {
+    cursor: pointer;
+}
+
+.program .program-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 5px;
+}
+
+.program .program-name {
+    margin: 0;
 }
 
 .window {
