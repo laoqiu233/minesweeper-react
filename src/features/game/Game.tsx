@@ -24,9 +24,10 @@ function Game({settings} : GameProps) {
     function restartGame() {
         dispatch(generateGrid(settings));
         setTimeToDisplay(0);
+        setTimerStarted(-1);
     }
 
-    useEffect(restartGame, []);
+    useEffect(restartGame, [settings]);
 
     useEffect(() => {
         if (timerStarted >= 0) {

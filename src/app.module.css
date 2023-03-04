@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'MS Sans Serif';
+    src: url('fonts/MS Sans Serif.ttf');
+}
+
+* {
+    font-family: 'MS Sans Serif';
+}
+
 .app {
     background-color: #008080;
     width: 100vw;
@@ -10,6 +19,18 @@
 
 .app .game {
     transform: scale(2);
+}
+
+.window {
+    padding: 3px;
+    background-color: #BFBFBF;
+}
+
+.window .title {
+    padding: 4px 3px;
+    background: linear-gradient(to left, #1085D2, #00007B);
+    color: white;
+    margin-bottom: 3px;
 }
 
 @media screen and (max-width: 768px) {
