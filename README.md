@@ -1,5 +1,4 @@
 # Minesweeper in React
-# By Dmitri Tsiu
 
 ![Minesweeper in React](./imgs/title.png)
 
