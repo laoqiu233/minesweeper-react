@@ -2,7 +2,7 @@
 
 ![Minesweeper in React](./imgs/title.png)
 
-This is a project written for the internship contest at VK. Around 10 hours total was 
+This is a project wri   tten for the internship contest at VK. Around 10 hours total was 
 spent on making this project from scratch.
 
 ![Gameplay screenshots](./imgs/gameplay.png)
