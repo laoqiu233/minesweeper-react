@@ -7,14 +7,20 @@ function AboutPage() {
             <h1 style={{'textAlign': 'center'}}>Minesweeper in React</h1>
             <p>By Dmitri Tsiu</p>
             <p>
-                This is a project written for internship contest at VK. Around 10 hours total was 
+                This is a project written for the internship contest at VK. Around 10 hours total was 
                 spent on making this project from scratch.
+            </p>
+            <p>
+                I tried making this project as authentic as possible by using old school fonts and classic Win98 icons, 
+                replicating the style of Win98 with CSS.
             </p>
             <p>
                 Stuff used for this project:
             </p>
             <ul>
-                <li>React (Bootstrapped with CRA)</li>
+                <li>TypeScript</li>
+                <li>Webpack</li>
+                <li>React</li>
                 <li>Redux</li>
                 <li>React Router</li>
             </ul>
