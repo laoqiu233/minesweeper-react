@@ -1,8 +1,10 @@
 # Minesweeper in React
 
+Try it out [here](https://laoqiu233.github.io/minesweeper-react/)!
+
 ![Minesweeper in React](./imgs/title_screenshot.png)
 
-This is a project wri   tten for the internship contest at VK. Around 10 hours total was 
+This is a project written for the internship contest at VK. Around 10 hours total was 
 spent on making this project from scratch.
 
 ![Gameplay screenshots](./imgs/gameplay.png)
