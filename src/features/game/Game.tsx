@@ -40,7 +40,8 @@ function Game({settings} : GameProps) {
     }, [timerStarted]);
 
     useEffect(() => {
-        if (revealedCount > 0 && timerStarted < 0) setTimerStarted(Date.now());
+        if (revealedCount === 0) setTimerStarted(-1);
+        else if (revealedCount > 0 && timerStarted < 0) setTimerStarted(Date.now());
     }, [revealedCount]);
 
     const win = unflaggedMineCount === 0 &&
